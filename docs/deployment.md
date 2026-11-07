@@ -1,6 +1,6 @@
 # Deploy the Bank on one Linux host
 
-This guide covers the Bank and control API only. The opt-in [online orchestrator](orchestration.md) runs on the host or in a separately managed environment. The repository does not install a production service manager or a public voting service.
+This guide covers the Bank and control API only. The opt-in [online orchestrator](orchestration.md) runs on the host or in a separately managed environment. The repository does not install a production service manager or a public voting service. The services have not received an independent security review.
 
 ## Build and provision
 
@@ -37,6 +37,50 @@ docker run -d --name rift-control --network host --user "$(id -u):$(id -g)" \
 ```
 
 Both endpoints listen on `127.0.0.1` by default. Control operations require the administrator token, which is distinct from participant tokens. Do not expose the control API to a network. A Bank exposed beyond the host needs a separately configured TLS and access boundary; it is outside this guide. Do not log token values. Check `GET /healthz` on the Bank, inspect container logs for errors, and verify an unauthenticated control request is rejected.
+
+## Import result evidence
+
+Use operator-supplied files. From `backend/`, run
+`python -m lolarena.match_adapters riot <local-html>` or
+`python -m lolarena.match_adapters opgg <local-json>` to normalize a local snapshot.
+These parsers read local files. The operator is responsible for verifying the score
+against the source and confirming permission to use the data.
+See the [data rights review](data-rights.md).
+
+Run `python -m lolarena.source_import <local-raw> <metadata.json> <root>/result-evidence`
+to store a local evidence record tied to the hash of the source bytes. The metadata
+requires `match_id`, `score`, `result_id`, `source`, `published_at`, and `observed_at`.
+
+## Review and confirm settlement
+
+Use the authenticated control API at `/v1/days/{day}/{operation}`.
+
+1. Call `prepare-settlement` to create a candidate without changing balances.
+2. Use `review-status` to inspect the full candidate and its source evidence.
+3. Confirm the reviewed SHA-256 with `confirm-settlement`. The API rechecks the
+   evidence and commits settlement and confirmation in the same transaction.
+
+If a conflicting proposal blocks confirmation, use `dismiss-review` to clear the
+pending review before preparing a replacement. Missing evidence or unknown or
+unverified runs (marked `U`) block settlement.
+
+The `roster` operation takes an `account` and an `action` of `add`, `enable`,
+or `disable`. Change the roster between fully settled days. Each match day uses
+its stored roster. New accounts start with 1,000 chips. Re-enabled accounts keep
+their prior funds.
+
+## Migrate a legacy ledger
+
+From `backend/`, run `python -m lolarena.migrate_ledger <old-db> <new-db>` to
+create a separate SQLite copy with roster metadata. Use a new destination path.
+The tool leaves the source intact. Verify the assumed 1,000 initial chips and
+review legacy joining dates, which the tool records as `unknown`.
+
+For a ledger in use, plan a migration before replacing the database. Stop its
+services, verify an independent backup, and validate the new copy before making
+the replacement. Restore the original backup to roll back. The tool migrates
+SQLite data only. Back up the full ledger root to preserve credentials and
+evidence. See [Backup and restore](#backup-and-restore).
 
 ## Backup and restore
 
