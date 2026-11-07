@@ -1,0 +1,19 @@
+[Unit]
+Description=Rift Forecast offline match-day orchestrator
+After=docker.service
+Requires=docker.service
+StartLimitIntervalSec=600
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=rift
+WorkingDirectory=/opt/rift-forecast-os/backend
+EnvironmentFile=/etc/rift-forecast/orchestrator.env
+ExecStart=/opt/rift-forecast-os/.venv/bin/python -m lolarena.orchestrator --track offline --root ${RIFT_LEDGER} --day ${RIFT_DAY} --config ${RIFT_CONFIG} --workspaces ${RIFT_WORKSPACES} --materials ${RIFT_MATERIALS} --attestation ${RIFT_ATTESTATION} --run --resume-interrupted --wait --seal
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=45
+
+[Install]
+WantedBy=multi-user.target

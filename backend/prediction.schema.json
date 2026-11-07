@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LoL arena prediction",
+  "type": "object",
+  "required": [
+    "match_id",
+    "p_team_a_win",
+    "winner_bet",
+    "score_bets",
+    "rationale"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "match_id": {
+      "type": "string"
+    },
+    "p_team_a_win": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "winner_bet": {
+      "type": "object",
+      "required": [
+        "team",
+        "stake"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "team": {
+          "type": "string"
+        },
+        "stake": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "score_bets": {
+      "type": "object",
+      "description": "Use every legal final score for this fixture, with Team A's wins first.",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "rationale": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "take_loan": {
+      "type": "boolean",
+      "description": "request the one-time 500-chip bank loan (only honored when eligible)"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.git
+**/__pycache__
+**/.pytest_cache
+**/tmp
+**/*.pyc
+frontend/data/arena.json
+*.env
+.env

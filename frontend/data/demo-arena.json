@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 2,
+  "observedAt": "2026-11-06T18:00:00Z",
+  "calendar": {
+    "source": "Fictional fixture",
+    "observedAt": "2026-11-06T18:00:00Z",
+    "events": [
+      {
+        "id": "demo-match-1",
+        "start": "2026-11-06T12:00:00Z",
+        "referenceStart": "2026-11-06T12:00:00Z",
+        "bestOf": 5,
+        "teams": [
+          "AAA",
+          "BBB"
+        ],
+        "status": "done",
+        "stage": "final",
+        "score": [
+          3,
+          1
+        ],
+        "arena": {
+          "offline": {
+            "state": "settled",
+            "date": "2026-11-06",
+            "anchor": "2026-11-06T12:00:00Z"
+          }
+        }
+      }
+    ]
+  },
+  "leaderboard": {
+    "settledDaysByTrack": {
+      "offline": 1,
+      "online": 0
+    },
+    "tracks": {
+      "offline": {
+        "chips": [
+          {
+            "model": "model-a",
+            "balance": 1040,
+            "net": 40,
+            "loans_taken": 0,
+            "brier": 0.16,
+            "n_settled": 1,
+            "winner_hits": 1,
+            "n_directional": 1,
+            "n_neutral": 0,
+            "n_unknown": 0,
+            "n_abstain": 0
+          }
+        ],
+        "accuracy": [
+          {
+            "model": "model-a",
+            "balance": 1040,
+            "net": 40,
+            "loans_taken": 0,
+            "brier": 0.16,
+            "n_settled": 1,
+            "winner_hits": 1,
+            "n_directional": 1,
+            "n_neutral": 0,
+            "n_unknown": 0,
+            "n_abstain": 0
+          }
+        ]
+      },
+      "online": {}
+    },
+    "daily": {
+      "offline": {
+        "2026-11-06": {
+          "chips": [
+            {
+              "model": "model-a",
+              "balance": 1040,
+              "net": 40,
+              "loans_taken": 0,
+              "brier": 0.16,
+              "n_settled": 1,
+              "winner_hits": 1,
+              "n_directional": 1,
+              "n_neutral": 0,
+              "n_unknown": 0,
+              "n_abstain": 0
+            }
+          ],
+          "accuracy": [
+            {
+              "model": "model-a",
+              "balance": 1040,
+              "net": 40,
+              "loans_taken": 0,
+              "brier": 0.16,
+              "n_settled": 1,
+              "winner_hits": 1,
+              "n_directional": 1,
+              "n_neutral": 0,
+              "n_unknown": 0,
+              "n_abstain": 0
+            }
+          ]
+        }
+      },
+      "online": {}
+    },
+    "initialChipsByTrack": {
+      "offline": 1000,
+      "online": 1000
+    }
+  },
+  "runtime": {
+    "offline": [
+      {
+        "model": "model-a",
+        "phase": "first",
+        "date": "2026-11-06",
+        "duration": 90,
+        "finished": "2026-11-06T11:50:00Z",
+        "verified": true,
+        "exit": 0,
+        "accepted": 1,
+        "tokens": 4000,
+        "estimated_usd": 0.01
+      }
+    ],
+    "online": [],
+    "expectedByTrack": {
+      "offline": 1,
+      "online": 0
+    }
+  },
+  "batches": {},
+  "desktops": {
+    "offline": [],
+    "online": []
+  },
+  "desktopAccounts": {},
+  "gallery": {
+    "notes": {},
+    "screenshots": {},
+    "summaries": {},
+    "notePhases": {}
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "scheduleSource": "Fictional fixture",
+  "observedAt": null,
+  "scheduleSha256": null,
+  "events": [],
+  "teams": {
+    "AAA": {
+      "name": "Example A",
+      "icon": "assets/neutral.svg",
+      "logoInsets": [
+        0,
+        0
+      ]
+    },
+    "BBB": {
+      "name": "Example B",
+      "icon": "assets/neutral.svg",
+      "logoInsets": [
+        0,
+        0
+      ]
+    },
+    "TBD": {
+      "name": "TBD",
+      "icon": "assets/neutral.svg",
+      "logoInsets": [
+        0,
+        0
+      ]
+    }
+  },
+  "models": [
+    {
+      "id": "model-a",
+      "displayName": "Example Model",
+      "kind": "model",
+      "harness": "Example harness",
+      "icon": "assets/neutral.svg"
+    }
+  ],
+  "leaderboard": null,
+  "usage": null
+}

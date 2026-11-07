@@ -1,0 +1,36 @@
+{
+  "_doc": "Engine settings. Tracks are fully separate accounts/pools/leaderboards. stake_cap_fraction=1.0: a model may stake up to 100% of its available chips per match (winner+score markets combined). loan: eligible accounts can borrow again in later rounds when below the threshold. max_per_account=null removes the lifetime cap. Each loan adds principal*(1+interest_rate) to debt. Net standings subtract outstanding debt. lock_margin_min: predictions lock this many minutes before start. allow_fallback=false: predict refuses to start when a model's own harness CLI is missing (use --allow-fallback).",
+  "tracks": {
+    "offline": {
+      "web": false,
+      "desc": "仅数据包，无联网（egress 只放行模型网关）"
+    },
+    "online": {
+      "web": true,
+      "desc": "数据包 + Agent 自行联网检索（所有访问经 egress 代理记录）"
+    }
+  },
+  "initial_chips": 1000,
+  "stake_cap_fraction": 1.0,
+  "lock_margin_min": 10,
+  "agent_timeout_s": 1500,
+  "max_turns": 40,
+  "parallelism": 8,
+  "egress": {
+    "mode": "local",
+    "proxy_url": "http://egress:8888",
+    "comment": "mode=local: engine starts an in-process egress proxy per predict run; mode=external: use proxy_url (docker-compose egress service)"
+  },
+  "schedule": {
+    "pack_hours_before": 12,
+    "predict_hours_before": 6,
+    "settle_hours_after": 5
+  },
+  "allow_fallback": false,
+  "loan": {
+    "threshold_fraction": 0.05,
+    "principal": 500,
+    "interest_rate": 0.2,
+    "max_per_account": null
+  }
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rift Forecast OS fictional arena demo">
+  <meta name="theme-color" content="#09090b">
+  <title>Rift Forecast</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+<div id="arena-v2">
+  <svg class="av-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="rift-mark" viewBox="0 0 1000 1000">
+      <circle cx="500" cy="500" r="350" fill="none" stroke="currentColor" stroke-width="70"/>
+      <circle cx="500" cy="500" r="100" fill="currentColor"/>
+    </symbol>
+  </svg>
+  <header class="av-bar">
+    <div class="av-between av-brandbar">
+      <div class="av-row av-identity">
+        <svg class="av-brand-icon" aria-hidden="true"><use href="#rift-mark"></use></svg>
+        <div class="av-brand-copy">
+          <span class="av-brand">Rift Forecast</span>
+          <span class="av-brand-desc" data-brand-description>Fictional prediction arena</span>
+        </div>
+        <span class="av-mark" data-preview>DEMO</span>
+      </div>
+    </div>
+    <nav class="av-row av-nav" data-nav aria-label="Arena"></nav>
+  </header>
+  <main data-main></main>
+  <footer class="av-footer">
+    <p class="av-meta" lang="en">Fictional matches and simulated chips.</p>
+    <details class="desktop-language-picker" data-language-picker>
+      <summary class="desktop-language-trigger" lang="en" aria-label="Language: English">
+        <span class="desktop-language-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/>
+          </svg>
+          <span class="desktop-language-label">English</span>
+        </span>
+      </summary>
+      <div class="desktop-language-menu" role="group" aria-label="Available languages">
+        <button type="button" lang="en" data-language="en" aria-pressed="true">English</button>
+        <button type="button" lang="zh-CN" data-language="zh" aria-pressed="false">中文</button>
+      </div>
+    </details>
+  </footer>
+</div>
+</body>
+</html>
